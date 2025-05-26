@@ -58,18 +58,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     box-shadow: 0 0 20px rgba(0,0,0,0.06);
 }
 .img-preview {
-    width: 100px;
+    width: 100%;
+    max-width: 200px;
     height: auto;
     border-radius: 0.5rem;
     border: 1px solid #ccc;
-    margin-bottom: 1rem;
+    display: block;
+    margin-top: 5px;
 }
 </style>
 
 <div id="main-content">
   <div class="container mt-5">
     <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-10">
+      <div class="col-lg-10 col-xl-9">
         <div class="card card-modern border-0">
           <div class="card-header bg-primary text-white">
             <h5 class="mb-0"><i class="fas fa-edit me-2"></i> Edit Destination</h5>
@@ -77,32 +79,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
           <div class="card-body bg-white p-4">
             <form method="post" enctype="multipart/form-data" id="editForm">
-              <div class="mb-3">
-                <label class="form-label">Destination Name</label>
-                <input type="text" name="name" value="<?= htmlspecialchars($data['name']) ?>" class="form-control" required>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Destination Name</label>
+                  <input type="text" name="name" value="<?= htmlspecialchars($data['name']) ?>" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Address</label>
+                  <input type="text" name="address" value="<?= htmlspecialchars($data['address']) ?>" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Contact Number</label>
+                  <input type="text" name="contact_number" value="<?= htmlspecialchars($data['contact_number']) ?>" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Current Image</label><br>
+                  <img src="uploads/<?= htmlspecialchars($data['image']) ?>" class="img-preview">
+                </div>
+
+                <div class="col-md-12">
+                  <label class="form-label">Change Image</label>
+                  <input type="file" name="image" class="form-control">
+                </div>
               </div>
 
-              <div class="mb-3">
-                <label class="form-label">Address</label>
-                <input type="text" name="address" value="<?= htmlspecialchars($data['address']) ?>" class="form-control" required>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">Contact Number</label>
-                <input type="text" name="contact_number" value="<?= htmlspecialchars($data['contact_number']) ?>" class="form-control" required>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">Current Image</label><br>
-                <img src="uploads/<?= htmlspecialchars($data['image']) ?>" class="img-preview">
-              </div>
-
-              <div class="mb-4">
-                <label class="form-label">Change Image</label>
-                <input type="file" name="image" class="form-control">
-              </div>
-
-              <div class="d-flex justify-content-between">
+              <div class="d-flex justify-content-between mt-4">
                 <a href="manage_destinations.php" class="btn btn-secondary">
                   <i class="fas fa-arrow-left"></i> Cancel
                 </a>

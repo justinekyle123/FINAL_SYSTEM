@@ -46,96 +46,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <style>
-    .card-modern {
-        border-radius: 1rem;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-    }
+  body, html {
+    overflow-x: hidden;
+  }
 
-    .form-label {
-        font-weight: 500;
-    }
+  #main-content {
+    padding: 40px;
+    max-width: 100%;
+  }
 
-    .input-group-text {
-        background-color: #f0f0f0;
-        border: none;
-    }
+  .form-section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-    input.form-control, textarea.form-control {
-        border-radius: 0.5rem;
-    }
+  .form-label {
+    font-weight: 500;
+  }
 
-    .btn-success {
-        border-radius: 0.5rem;
-        padding: 0.5rem 1.25rem;
-    }
+  .form-control {
+    border-radius: 0.5rem;
+  }
+
+  .btn-submit {
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 0.5rem;
+  }
+
+  .card-header h5 {
+    margin: 0;
+  }
 </style>
 
 <div id="main-content">
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-10">
-        <div class="card card-modern border-0">
-          <div class="card-header bg-success text-white rounded-top">
-            <h5 class="mb-0"><i class="fas fa-map-marker-alt me-2"></i> Add New Destination</h5>
+  <div class="container">
+    <div class="form-section">
+      <div class="card-header bg-success text-white mb-4 rounded p-2">
+        <h5><i class="fas fa-map-marker-alt me-2"></i> Add New Destination</h5>
+      </div>
+
+      <form method="POST" enctype="multipart/form-data" id="destinationForm">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label"><i class="fas fa-tag me-1"></i> Destination Name</label>
+            <input type="text" name="name" class="form-control" placeholder="e.g. Boracay Island" required>
           </div>
 
-          <div class="card-body bg-white p-4">
-            <form method="POST" enctype="multipart/form-data" id="destinationForm">
-
-              <div class="mb-3">
-                <label class="form-label">Destination Name</label>
-                <div class="input-group">
-                  <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                  <input type="text" name="name" class="form-control" placeholder="e.g. Boracay Island" required>
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">Description</label>
-                <div class="input-group">
-                  <span class="input-group-text"><i class="fas fa-align-left"></i></span>
-                  <textarea name="description" class="form-control" rows="3" placeholder="Brief description of the destination" required></textarea>
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">Address</label>
-                <div class="input-group">
-                  <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                  <input type="text" name="address" class="form-control" placeholder="Complete address" required>
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">Contact Number</label>
-                <div class="input-group">
-                  <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                  <input type="text" name="contact_number" class="form-control" placeholder="e.g. 09123456789" required>
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <label class="form-label">Upload Image</label>
-                <div class="input-group">
-                  <span class="input-group-text"><i class="fas fa-image"></i></span>
-                  <input type="file" name="image" class="form-control" required>
-                </div>
-              </div>
-
-              <div class="text-end">
-                <button type="button" onclick="confirmInsert()" class="btn btn-success">
-                  <i class="fas fa-plus me-1"></i> Add Destination
-                </button>
-              </div>
-
-            </form>
+          <div class="col-md-6">
+            <label class="form-label"><i class="fas fa-map-marker-alt me-1"></i> Address</label>
+            <input type="text" name="address" class="form-control" placeholder="Complete address" required>
           </div>
 
-          <div class="card-footer text-center text-muted small">
-            Please fill out all required fields before submitting.
+          <div class="col-md-6">
+            <label class="form-label"><i class="fas fa-phone me-1"></i> Contact Number</label>
+            <input type="text" name="contact_number" class="form-control" placeholder="e.g. 09123456789" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label"><i class="fas fa-image me-1"></i> Upload Image</label>
+            <input type="file" name="image" class="form-control" required>
+          </div>
+
+          <div class="col-md-12">
+            <label class="form-label"><i class="fas fa-align-left me-1"></i> Description</label>
+            <textarea name="description" class="form-control" rows="4" placeholder="Brief description" required></textarea>
           </div>
         </div>
-      </div>
+
+        <button type="button" onclick="confirmInsert()" class="btn btn-success btn-submit">
+          <i class="fas fa-plus me-1"></i> Add Destination
+        </button>
+      </form>
     </div>
   </div>
 </div>
