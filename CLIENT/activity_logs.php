@@ -3,10 +3,10 @@ include 'includes/config.php';
 include 'includes/navbar.php';
 include 'includes/sidebar.php';
 
-$sql = "SELECT activity_logs.*, users.username 
-        FROM activity_logs 
-        JOIN users ON activity_logs.user_id = users.id 
-        ORDER BY activity_logs.created_at DESC";
+$sql = "SELECT activity_log.*, users.username 
+        FROM activity_log 
+        JOIN users ON activity_log.user_id = users.id 
+        ORDER BY activity_log.created_at DESC";
 
 $result = $conn->query($sql);
 ?>

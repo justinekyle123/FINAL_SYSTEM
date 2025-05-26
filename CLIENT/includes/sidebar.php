@@ -105,8 +105,7 @@ if (!isset($_SESSION)) session_start();
     <a href="manage_users.php"><i class="fas fa-users-cog"></i> Manage Users</a>
     <a href="add_destination.php"><i class="fas fa-plus-circle"></i> Add Destination</a>
     <a href="manage_destinations.php"><i class="fas fa-map-marked-alt"></i> Manage Destinations</a>
-    <a href="add_post.php"><i class="fas fa-bullhorn"></i> Post Announcement</a>
-    <a href="admin_post.php"><i class="fas fa-bullhorn"></i> View Announcements</a>
+    <a href="activity_logs.php"><i class="fas fa-history"></i> Activity Logs</a>
     <a href="admin_feedback.php"><i class="fas fa-comments"></i> User Feedback</a>
 <?php elseif ($_SESSION['role'] === 'user'): ?>
     <a href="user.php"><i class="fas fa-home"></i> Dashboard</a>
