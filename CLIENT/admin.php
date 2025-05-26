@@ -101,4 +101,3 @@ $adminCount = $adminCountResult->fetch_assoc()['total'];
 </div>
 
 </div>
-
