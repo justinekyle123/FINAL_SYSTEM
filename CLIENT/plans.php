@@ -37,7 +37,8 @@ $result = $conn->query($sql);
                     <img src="uploads/<?= $row['image'] ?>" class="card-img-top" alt="<?= htmlspecialchars($row['name']) ?>" style="height: 200px; object-fit: cover;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title"><?= htmlspecialchars($row['name']) ?></h5>
-                        <p class="card-text text-muted"><?= nl2br(htmlspecialchars($row['description'])) ?></p>
+                        <p class="text-muted"><i class="fas fa-map-marker-alt text-danger me-2 info-icon"></i><strong>Address:</strong> <?= htmlspecialchars($row['address']) ?></p>
+                        <p class="text-muted"><i class="fas fa-phone text-success me-2 info-icon"></i><strong>Contact:</strong> <?= htmlspecialchars($row['contact_number']) ?></p>
                         <div class="mt-auto d-flex justify-content-between align-items-center pt-3">
                             <a href="destination_details.php?id=<?= $row['id'] ?>" class="btn btn-outline-primary btn-sm">
                                 <i class="fas fa-info-circle me-1"></i>View Details
