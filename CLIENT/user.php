@@ -4,8 +4,9 @@ include 'includes/navbar.php';
 include 'includes/sidebar.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
+    echo"<script>
+        window.location.href = 'login.php';
+   </script>";
 }
 
 $user_id = $_SESSION['user_id'];

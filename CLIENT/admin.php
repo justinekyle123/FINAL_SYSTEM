@@ -5,8 +5,9 @@ include_once "includes/sidebar.php";
 include_once "includes/navbar.php";
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
-    exit;
+   echo"<script>
+        window.location.href = 'login.php';
+   </script>";
 }
 
 $userCountResult = $conn->query("SELECT COUNT(*) AS total FROM users");
