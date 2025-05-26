@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2025 at 05:22 AM
+-- Generation Time: May 26, 2025 at 06:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -34,6 +34,30 @@ CREATE TABLE `activity_log` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `activity_log`
+--
+
+INSERT INTO `activity_log` (`id`, `user_id`, `activity`, `created_at`) VALUES
+(1, 1, 'Logged out', '2025-05-26 03:41:34'),
+(2, 2, 'Logged in', '2025-05-26 03:41:45'),
+(3, 2, 'Logged out', '2025-05-26 03:41:56'),
+(4, 1, 'Logged in', '2025-05-26 03:42:09'),
+(5, 1, 'Logged out', '2025-05-26 03:50:54'),
+(6, 2, 'Logged in', '2025-05-26 03:51:02'),
+(7, 2, 'Logged out', '2025-05-26 03:51:36'),
+(8, 1, 'Logged in', '2025-05-26 03:51:45'),
+(9, 1, 'Logged out', '2025-05-26 03:51:55'),
+(10, 1, 'Logged in', '2025-05-26 03:52:02'),
+(11, 1, 'Logged out', '2025-05-26 03:52:08'),
+(12, 1, 'Logged in', '2025-05-26 03:52:15'),
+(13, 1, 'Logged out', '2025-05-26 03:57:33'),
+(14, 2, 'Logged in', '2025-05-26 03:57:40'),
+(15, 2, 'Logged out', '2025-05-26 03:58:07'),
+(16, 1, 'Logged in', '2025-05-26 04:00:46'),
+(17, 1, 'Logged out', '2025-05-26 04:12:41'),
+(18, 2, 'Logged in', '2025-05-26 04:12:48');
+
 -- --------------------------------------------------------
 
 --
@@ -45,10 +69,17 @@ CREATE TABLE `destination` (
   `name` varchar(25) NOT NULL,
   `description` longtext NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `address` varchar(35) DEFAULT NULL,
+  `address` varchar(65) DEFAULT NULL,
   `contact_number` varchar(20) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `destination`
+--
+
+INSERT INTO `destination` (`id`, `name`, `description`, `image`, `address`, `contact_number`, `created_at`) VALUES
+(1, 'Conel Cave', 'Kalaja Cave is derived from the word Kalaha, which means frying pot due to the formation of the karsts made millions of years ago. Waterfalls and caves are abundant in this area. It produced waterfalls & caves Tourists can explore the Kalaja Cave in General Santos City. The cave has a pool inside that is about three meters deep and 22 meters wide.', '1748232532_cave.jpg', 'Brgy. Conel, General Santos City, South Cotabato, Philippines', '0985826548', '2025-05-26 04:08:52');
 
 -- --------------------------------------------------------
 
@@ -108,7 +139,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `phone`, `address`, `password`, `role`, `created_at`) VALUES
 (1, 'kyle', 'kyle@gmail.com', '0965856325', 'Polomolok', 'kyle123', 'admin', '2025-05-26 03:13:57'),
-(2, 'yanzon311', 'ok@gmail.com', '09685632365', 'Polomolok', 'okay123', 'user', '2025-05-26 03:15:56');
+(2, 'yanzon3', 'ok@gmail.com', '09685632365', 'Polomolok', 'okay123', 'user', '2025-05-26 03:15:56');
 
 --
 -- Indexes for dumped tables
@@ -156,13 +187,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `destination`
 --
 ALTER TABLE `destination`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `feedback`
