@@ -9,13 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $address = $_POST['address'];
-    $contact = $_POST['contact'];
+    $contact = $_POST['contact_number'];
 
     $image = time() . '_' . $_FILES['image']['name'];
     $target = "uploads/" . $image;
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-        $sql = "INSERT INTO destination (name, description, address, contact, image)
+        $sql = "INSERT INTO destination (name, description, address, contact_number, image)
                 VALUES ('$name', '$description', '$address', '$contact', '$image')";
 
         if ($conn->query($sql)) {
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                             <div class="mb-3">
                                 <label class="form-label"><i class="fas fa-phone-alt me-2"></i>Contact Number</label>
-                                <input type="text" name="contact" class="form-control" placeholder="e.g. 09123456789" required>
+                                <input type="text" name="contact_number" class="form-control" placeholder="e.g. 09123456789" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label"><i class="fas fa-image me-2"></i>Upload Image</label>

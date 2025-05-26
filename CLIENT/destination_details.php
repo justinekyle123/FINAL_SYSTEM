@@ -34,7 +34,7 @@ $destination = $result->fetch_assoc();
           <p class="card-text mb-4"><?= nl2br(htmlspecialchars($destination['description'])) ?></p>
           
           <p class="mb-2"><i class="fas fa-map-marker-alt text-danger me-2"></i><strong>Address:</strong> <?= htmlspecialchars($destination['address']) ?></p>
-          <p><i class="fas fa-phone-alt text-success me-2"></i><strong>Contact:</strong> <?= htmlspecialchars($destination['contact']) ?></p>
+          <p><i class="fas fa-phone-alt text-success me-2"></i><strong>Contact:</strong> <?= htmlspecialchars($destination['contact_number']) ?></p>
 
           <form method="post" action="add_to_plan.php" class="d-inline-block" id="planForm">
             <input type="hidden" name="id" value="<?= $destination['id'] ?>">

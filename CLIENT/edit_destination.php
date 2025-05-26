@@ -19,7 +19,7 @@ $data = $result->fetch_assoc();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name = $conn->real_escape_string($_POST['name']);
     $address = $conn->real_escape_string($_POST['address']);
-    $contact = $conn->real_escape_string($_POST['contact']);
+    $contact = $conn->real_escape_string($_POST['contact_number']);
 
     if (!empty($_FILES['image']['name'])) {
         $imageName = basename($_FILES['image']['name']);
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $imageName = $data['image'];
     }
 
-    $sql = "UPDATE destination SET name='$name', address='$address', contact='$contact', image='$imageName' WHERE id=$id";
+    $sql = "UPDATE destination SET name='$name', address='$address', contact_number='$contact', image='$imageName' WHERE id=$id";
 
     if ($conn->query($sql)) {
         echo "
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
         <div class="mb-3">
         <label>Contact</label>
-        <input type="text" name="contact" value="<?= htmlspecialchars($data['contact']) ?>" class="form-control" required>
+        <input type="text" name="contact_number" value="<?= htmlspecialchars($data['contact_number']) ?>" class="form-control" required>
         </div>
         <div class="mb-3">
         <label>Current Image</label><br>

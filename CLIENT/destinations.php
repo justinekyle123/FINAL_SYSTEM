@@ -38,7 +38,7 @@ include_once "includes/navbar.php";
             <div class="card-body d-flex flex-column">
               <h5 class="card-title"><?= htmlspecialchars($row['name']) ?></h5>
               <p class="mb-1"><i class="fas fa-map-marker-alt text-danger me-2"></i><strong>Address:</strong> <?= htmlspecialchars($row['address']) ?></p>
-              <p><i class="fas fa-phone text-success me-2"></i><strong>Contact:</strong> <?= htmlspecialchars($row['contact']) ?></p>
+              <p><i class="fas fa-phone text-success me-2"></i><strong>Contact:</strong> <?= htmlspecialchars($row['contact_number']) ?></p>
               <div class="mt-auto d-flex justify-content-between pt-3">
                 <a href="destination_details.php?id=<?= $row['id'] ?>" class="btn btn-outline-primary btn-sm">
                   <i class="fas fa-info-circle me-1"></i> View Details

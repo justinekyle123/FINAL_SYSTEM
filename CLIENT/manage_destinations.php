@@ -38,7 +38,7 @@ $result = $conn->query($sql);
                     <td><?= $row['id'] ?></td>
                     <td><?= htmlspecialchars($row['name']) ?></td>
                     <td><?= htmlspecialchars($row['address']) ?></td>
-                    <td><?= htmlspecialchars($row['contact']) ?></td>
+                    <td><?= htmlspecialchars($row['contact_number']) ?></td>
                     <td><img src="uploads/<?= $row['image'] ?>" width="80" height="50"></td>
                     <td>
                         <a href="#" onclick="confirmEdit(<?= $row['id'] ?>)" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
