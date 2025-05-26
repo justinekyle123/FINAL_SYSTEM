@@ -4,13 +4,12 @@ include_once "includes/header.php";
 include_once "includes/sidebar.php";
 include_once "includes/navbar.php";
 
-
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 $result = $conn->query("SELECT * FROM destination WHERE id = $id");
 
 if ($result->num_rows === 0) {
-    echo "<script>alert('Destination not found!'); window.location.href='manage_destination.php';</script>";
+    echo "<script>alert('Destination not found!'); window.location.href='manage_destinations.php';</script>";
     exit;
 }
 
@@ -22,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $contact = $conn->real_escape_string($_POST['contact_number']);
 
     if (!empty($_FILES['image']['name'])) {
-        $imageName = basename($_FILES['image']['name']);
+        $imageName = time() . '_' . basename($_FILES['image']['name']);
         $targetPath = "uploads/" . $imageName;
         move_uploaded_file($_FILES['image']['tmp_name'], $targetPath);
     } else {
@@ -33,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($conn->query($sql)) {
         echo "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
         <script>
         Swal.fire({
             icon: 'success',
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </script>";
         exit;
     } else {
-        echo "
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
         <script>
         Swal.fire('Error', 'Failed to update destination.', 'error');
         </script>";
@@ -52,35 +52,74 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-<div id="main-content">
-    <div class="container">
-    <h3>Edit Destination</h3>
-    <form method="post" enctype="multipart/form-data" id="editForm">
-        <div class="mb-3">
-        <label>Name</label>
-        <input type="text" name="name" value="<?= htmlspecialchars($data['name']) ?>" class="form-control" required>
-        </div>
-        <div class="mb-3">
-        <label>Address</label>
-        <input type="text" name="address" value="<?= htmlspecialchars($data['address']) ?>" class="form-control" required>
-        </div>
-        <div class="mb-3">
-        <label>Contact</label>
-        <input type="text" name="contact_number" value="<?= htmlspecialchars($data['contact_number']) ?>" class="form-control" required>
-        </div>
-        <div class="mb-3">
-        <label>Current Image</label><br>
-        <img src="uploads/<?= $data['image'] ?>" width="100"><br><br>
-        <label>Change Image</label>
-        <input type="file" name="image" class="form-control">
-        </div>
+<style>
+.card-modern {
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.06);
+}
+.img-preview {
+    width: 100px;
+    height: auto;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+}
+</style>
 
-        <button type="button" class="btn btn-primary" onclick="confirmUpdate()">
-             <i class="fas fa-save"></i> Save Changes
-        </button>
-        <a href="manage_destinations.php" class="btn btn-secondary">Cancel</a>
-    </form>
+<div id="main-content">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="card card-modern border-0">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0"><i class="fas fa-edit me-2"></i> Edit Destination</h5>
+          </div>
+
+          <div class="card-body bg-white p-4">
+            <form method="post" enctype="multipart/form-data" id="editForm">
+              <div class="mb-3">
+                <label class="form-label">Destination Name</label>
+                <input type="text" name="name" value="<?= htmlspecialchars($data['name']) ?>" class="form-control" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Address</label>
+                <input type="text" name="address" value="<?= htmlspecialchars($data['address']) ?>" class="form-control" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Contact Number</label>
+                <input type="text" name="contact_number" value="<?= htmlspecialchars($data['contact_number']) ?>" class="form-control" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Current Image</label><br>
+                <img src="uploads/<?= htmlspecialchars($data['image']) ?>" class="img-preview">
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label">Change Image</label>
+                <input type="file" name="image" class="form-control">
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <a href="manage_destinations.php" class="btn btn-secondary">
+                  <i class="fas fa-arrow-left"></i> Cancel
+                </a>
+                <button type="button" class="btn btn-primary" onclick="confirmUpdate()">
+                  <i class="fas fa-save me-1"></i> Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card-footer text-center text-muted small">
+            Make sure all details are correct before saving.
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <script>
