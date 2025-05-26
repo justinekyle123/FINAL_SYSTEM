@@ -1,7 +1,12 @@
 <?php
-session_start();
-session_unset();
-session_destroy();
 
-header("Location: login.php");
-exit;
+include 'includes/config.php';
+include 'includes/functions.php';
+
+if (isset($_SESSION['user_id'])) {
+    logActivity($conn, $_SESSION['user_id'], "Logged out");
+    session_destroy();
+    header("Location: login.php");
+    exit;
+}
+?>

@@ -1,5 +1,6 @@
 <?php
 include_once "includes/header.php";
+include 'includes/functions.php';
 require 'includes/config.php';
 
 
@@ -25,6 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
+
+        logActivity($conn, $_SESSION['user_id'], "Logged in");
 
          if ($user['role'] === 'admin') {
             header("Location: admin.php");
