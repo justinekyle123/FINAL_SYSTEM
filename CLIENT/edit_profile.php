@@ -4,7 +4,6 @@ include_once "includes/header.php";
 include_once "includes/sidebar.php";
 include_once "includes/navbar.php";
 
-
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
@@ -13,7 +12,6 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $result = $conn->query("SELECT * FROM users WHERE id = $user_id");
 $user = $result->fetch_assoc();
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
@@ -29,13 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             WHERE id = $user_id";
 
     if ($conn->query($sql)) {
-        $_SESSION['username'] = $username; // update session
+        $_SESSION['username'] = $username;
         echo "<script>
             Swal.fire({
                 icon: 'success',
-                title: 'Profile Updated',
-                showConfirmButton: false,
-                timer: 1500
+                title: 'Profile Updated Successfully!',
+                showConfirmButton: true,
             }).then(() => {
                 window.location.href = 'user_profile.php';
             });
@@ -46,37 +43,84 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+<style>
+    .card-profile {
+        max-width: 600px;
+        margin: auto;
+        border-radius: 12px;
+        padding: 30px;
+        border: none;
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #333;
+    }
+
+    input.form-control:focus {
+        box-shadow: none;
+        border-color: #0d6efd;
+    }
+
+    .input-group-text {
+        background-color: #f0f0f0;
+        border: none;
+    }
+
+    h4 i {
+        color: #0d6efd;
+    }
+</style>
+
 <div id="main-content">
   <div class="container mt-5">
-    <div class="card shadow-sm p-4">
-      <h4 class="mb-4"><i class="fas fa-user-edit me-2"></i>Edit Profile</h4>
+    <div class="card shadow card-profile">
+      <h4 class="mb-4 text-center"><i class="fas fa-user-edit me-2"></i>Edit Profile</h4>
+
       <form method="POST">
         <div class="mb-3">
           <label class="form-label">Username</label>
-          <input type="text" name="username" class="form-control" value="<?= htmlspecialchars($user['username']) ?>" required>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <input type="text" name="username" class="form-control" value="<?= htmlspecialchars($user['username']) ?>" required>
+          </div>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Email</label>
-          <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($user['email']) ?>" required>
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+            <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($user['email']) ?>" required>
+          </div>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Phone</label>
-          <input type="text" name="phone" class="form-control" value="<?= htmlspecialchars($user['phone']) ?>">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+            <input type="text" name="phone" class="form-control" value="<?= htmlspecialchars($user['phone']) ?>">
+          </div>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-4">
           <label class="form-label">Address</label>
-          <input type="text" name="address" class="form-control" value="<?= htmlspecialchars($user['address']) ?>">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+            <input type="text" name="address" class="form-control" value="<?= htmlspecialchars($user['address']) ?>">
+          </div>
         </div>
 
-        <button type="submit" class="btn btn-primary"><i class="fas fa-save me-1"></i> Save Changes</button>
-        <a href="user_profile.php" class="btn btn-secondary"><i class="fas fa-arrow-left me-1"></i> Cancel</a>
+        <div class="d-flex justify-content-between">
+          <a href="user_profile.php" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> Cancel
+          </a>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save me-1"></i> Save Changes
+          </button>
+        </div>
       </form>
     </div>
   </div>
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
