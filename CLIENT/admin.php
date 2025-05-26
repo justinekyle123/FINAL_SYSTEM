@@ -88,7 +88,7 @@ $adminCount = $adminCountResult->fetch_assoc()['total'];
                         <tr>
                             <td><?= htmlspecialchars($row['name']) ?></td>
                             <td><?= htmlspecialchars($row['address']) ?></td>
-                            <td><?= htmlspecialchars($row['contact']) ?></td>
+                            <td><?= htmlspecialchars($row['contact_number']) ?></td>
                             <td><img src="uploads/<?= $row['image'] ?>" width="60"></td>
                             <td><?= $row['created_at'] ?? 'N/A' ?></td>
                         </tr>
