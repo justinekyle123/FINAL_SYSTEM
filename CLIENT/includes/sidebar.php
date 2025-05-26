@@ -121,7 +121,7 @@ session_start();
     <a href="user.php"><i class="fas fa-home"></i> Dashboard</a>
     <a href="user_profile.php"><i class="fas fa-user"></i> My Profile</a>
     <a href="destinations.php"><i class="fas fa-map"></i> View Destinations</a>
-    <a href="plans.php"><i class="fas fa-map"></i> Plans</a>
+    <a href="plans.php"><i class="fas fa-map"></i>My Plans</a>
     <a href="feedback.php"><i class="fas fa-comment-dots"></i> Send Feedback</a>
   <?php endif; ?>
 
